@@ -778,19 +778,19 @@
         </ul>
 
         <div class="paypal-slot">
-          <div id="paypal-button-container-YOUR_YEARLY_PLAN_ID_BASIC"></div>
+          <div id="paypal-button-container-P-2LD42073RU6060209NKU6O2I"></div>
           <script>
             paypal.Buttons({
               style: { shape: 'rect', color: 'gold', layout: 'vertical', label: 'subscribe' },
               createSubscription: function(data, actions) {
                 return actions.subscription.create({
-                  plan_id: 'YOUR_YEARLY_PLAN_ID_BASIC'
+                  plan_id: 'P-2LD42073RU6060209NKU6O2I'
                 });
               },
               onApprove: function(data, actions) {
                 alert(data.subscriptionID);
               }
-            }).render('#paypal-button-container-YOUR_YEARLY_PLAN_ID_BASIC');
+            }).render('#paypal-button-container-P-2LD42073RU6060209NKU6O2I');
           </script>
         </div>
       </div>
