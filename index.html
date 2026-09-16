@@ -283,8 +283,8 @@
   @media (max-width: 640px) { .step-row { grid-template-columns: 1fr; gap: 6px; } }
 
   /* ---------- Pricing ---------- */
-  .pricing-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
-  @media (max-width: 960px) { .pricing-grid { grid-template-columns: 1fr; } }
+  .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+  @media (max-width: 640px) { .pricing-grid { grid-template-columns: 1fr; } }
   .plan {
     background: var(--bg-panel); border: 1px solid var(--line); padding: 38px; border-radius: 20px;
     transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
@@ -311,6 +311,31 @@
   }
   .plan-price { font-size: 42px; font-weight: 800; color: var(--white); margin-bottom: 4px; letter-spacing: -0.01em; }
   .plan-price small { font-size: 14px; font-weight: 500; color: var(--grey); }
+  .yearly-price {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-top: 6px;
+    font-size: 14px;
+  }
+  .yearly-price .old {
+    color: #FF5C5C;
+    text-decoration: line-through;
+    text-decoration-color: #FF5C5C;
+    font-weight: 500;
+  }
+  .yearly-price .new {
+    color: var(--white);
+    font-weight: 700;
+  }
+  .yearly-price .save {
+    font-size: 12px;
+    color: var(--lime);
+    font-weight: 600;
+    background: rgba(201,240,91,0.12);
+    padding: 2px 8px;
+    border-radius: 999px;
+  }
   .plan-desc { margin: 14px 0 24px; font-size: 14.5px; color: var(--grey); }
   .plan ul { list-style: none; margin-bottom: 30px; }
   .plan li { font-size: 14.5px; padding: 11px 0; border-top: 1px solid var(--line); color: var(--white); }
@@ -730,6 +755,46 @@
         </div>
       </div>
 
+      <!--
+        BASIC PLAN — YEARLY
+        Once you create a yearly billing plan in PayPal (Dashboard →
+        Subscriptions → new plan, billing cycle: Yearly, price: €384),
+        replace YOUR_YEARLY_BUTTON_CONTAINER_BASIC and YOUR_YEARLY_PLAN_ID_BASIC below.
+      -->
+      <div class="plan reveal">
+        <div class="plan-name">Basic Website Care Plan — Yearly</div>
+        <div class="plan-price">€384<small> / year</small></div>
+        <div class="yearly-price">
+          <span class="old">€480/yr</span>
+          <span class="new">€384/yr</span>
+          <span class="save">Save 20%</span>
+        </div>
+        <p class="plan-desc">Same Basic plan, billed once a year instead of monthly.</p>
+        <ul>
+          <li><strong>Hosting &amp; uptime</strong> — your website stays online and monitored, all included.</li>
+          <li><strong>Free bug fixes</strong> — if something on your site breaks, including any plugins or tools we've installed, we fix it at no extra charge for as long as you're subscribed. Fixes handled within 3–7 business days.</li>
+          <li><strong>Security updates</strong> — we keep your site's software and SSL certificate up to date.</li>
+          <li><strong>Direct support</strong> — a simple way to reach us if something's not working.</li>
+        </ul>
+
+        <div class="paypal-slot">
+          <div id="paypal-button-container-YOUR_YEARLY_PLAN_ID_BASIC"></div>
+          <script>
+            paypal.Buttons({
+              style: { shape: 'rect', color: 'gold', layout: 'vertical', label: 'subscribe' },
+              createSubscription: function(data, actions) {
+                return actions.subscription.create({
+                  plan_id: 'YOUR_YEARLY_PLAN_ID_BASIC'
+                });
+              },
+              onApprove: function(data, actions) {
+                alert(data.subscriptionID);
+              }
+            }).render('#paypal-button-container-YOUR_YEARLY_PLAN_ID_BASIC');
+          </script>
+        </div>
+      </div>
+
       <div class="plan featured reveal">
         <div class="plan-name">Monthly Website Care Plan</div>
         <div class="plan-price">€60<small> / month</small></div>
@@ -763,6 +828,50 @@
                 alert(data.subscriptionID);
               }
             }).render('#paypal-button-container-P-2XG54190KJ504482VNKUZ3JA');
+          </script>
+        </div>
+      </div>
+    </div>
+
+    <!--
+      CARE PLAN — YEARLY
+      Once you create a yearly billing plan in PayPal (Dashboard →
+      Subscriptions → new plan, billing cycle: Yearly, price: €576),
+      replace YOUR_YEARLY_PLAN_ID_CARE below.
+    -->
+    <div class="pricing-grid" style="margin-top:24px;">
+      <div class="plan featured reveal" style="grid-column: 1 / -1; max-width: 420px; margin: 0 auto;">
+        <div class="plan-name">Website Care Plan — Yearly</div>
+        <div class="plan-price">€576<small> / year</small></div>
+        <div class="yearly-price">
+          <span class="old">€720/yr</span>
+          <span class="new">€576/yr</span>
+          <span class="save">Save 20%</span>
+        </div>
+        <p class="plan-desc">Same full Care Plan, billed once a year instead of monthly.</p>
+        <ul>
+          <li><strong>Hosting &amp; uptime</strong> — your website stays online and monitored, all included.</li>
+          <li><strong>Regular updates</strong> — every 10 days, send us a message with any change you'd like (text, images, prices, small layout adjustments). We'll take care of it within 3–7 business days.</li>
+          <li><strong>Free bug fixes</strong> — if something on your site breaks, including any plugins or tools we've installed, we fix it at no extra charge for as long as you're subscribed.</li>
+          <li><strong>Security updates</strong> — we keep your site's software and SSL certificate up to date.</li>
+          <li><strong>Monthly backup</strong> — your site is backed up regularly, so we can restore it quickly if anything goes wrong.</li>
+          <li><strong>Direct support</strong> — a simple way to reach us anytime you need something changed or fixed.</li>
+        </ul>
+
+        <div class="paypal-slot">
+          <div id="paypal-button-container-P-6BV670605R7608034NKU6LPY"></div>
+          <script>
+            paypal.Buttons({
+              style: { shape: 'rect', color: 'gold', layout: 'vertical', label: 'subscribe' },
+              createSubscription: function(data, actions) {
+                return actions.subscription.create({
+                  plan_id: 'P-6BV670605R7608034NKU6LPY'
+                });
+              },
+              onApprove: function(data, actions) {
+                alert(data.subscriptionID);
+              }
+            }).render('#paypal-button-container-P-6BV670605R7608034NKU6LPY');
           </script>
         </div>
       </div>
