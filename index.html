@@ -99,7 +99,35 @@
   nav ul { display: flex; gap: 32px; list-style: none; }
   nav a { text-decoration: none; font-size: 14.5px; font-weight: 500; color: var(--grey); position: relative; transition: color 0.2s ease; }
   nav a:hover { color: var(--white); }
-  @media (max-width: 640px) { nav ul { gap: 14px; } nav a { font-size: 12px; } }
+
+  /* ---------- Mobile nav ---------- */
+  .menu-toggle {
+    display: none;
+    background: none; border: none; cursor: pointer;
+    width: 36px; height: 36px;
+    flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+  }
+  .menu-toggle span { display: block; width: 22px; height: 2px; background: var(--white); border-radius: 2px; transition: transform 0.25s ease, opacity 0.25s ease; }
+  .menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-toggle.open span:nth-child(2) { opacity: 0; }
+  .menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  @media (max-width: 760px) {
+    .menu-toggle { display: flex; }
+    nav {
+      position: fixed; top: 68px; left: 0; right: 0;
+      background: rgba(10,10,12,0.98); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.3s ease;
+      z-index: 49;
+    }
+    nav.open { max-height: 400px; }
+    nav ul { flex-direction: column; gap: 0; padding: 8px 32px 20px; }
+    nav ul li { border-bottom: 1px solid var(--line); }
+    nav ul li:last-child { border-bottom: none; }
+    nav a { display: block; padding: 16px 0; font-size: 16px; }
+  }
 
   /* ---------- Buttons (pill style) ---------- */
   .btn {
@@ -444,7 +472,7 @@
 <header>
   <div class="wrap">
     <a href="#" class="logo">Nest<span>Web</span>Digital</a>
-    <nav>
+    <nav id="main-nav">
       <ul>
         <li><a href="#how">Our work</a></li>
         <li><a href="#process">How it works</a></li>
@@ -453,6 +481,9 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
@@ -1012,6 +1043,21 @@
 </div>
 
 <script>
+  const menuToggle = document.getElementById('menu-toggle');
+  const mainNav = document.getElementById('main-nav');
+  menuToggle.addEventListener('click', () => {
+    const isOpen = mainNav.classList.toggle('open');
+    menuToggle.classList.toggle('open', isOpen);
+    menuToggle.setAttribute('aria-expanded', isOpen);
+  });
+  mainNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mainNav.classList.remove('open');
+      menuToggle.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
   const revealEls = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
