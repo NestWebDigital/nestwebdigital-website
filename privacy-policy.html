@@ -6,50 +6,61 @@
 <title>Privacy Policy — NestWebDigital</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #1B2A3D;
-    --cream: #F7F5F0;
-    --cream-panel: #F0ECE3;
-    --brass: #A8843D;
-    --charcoal: #2B2B2B;
-    --charcoal-soft: #5A5A54;
-    --line: #D9D3C4;
-    --serif: 'Source Serif 4', Georgia, serif;
-    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --bg: #0A0A0C;
+    --bg-panel: #131316;
+    --white: #F5F5F7;
+    --grey: #A6A6AD;
+    --grey-soft: #77777F;
+    --line: #26262B;
+    --blue: #5B7FFF;
+    --pink: #FF6FB3;
+    --purple: #9B6BFF;
+    --sans: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: var(--sans); color: var(--charcoal); background: var(--cream); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  body { font-family: var(--sans); color: var(--white); background: var(--bg); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
   .wrap { max-width: 760px; margin: 0 auto; padding: 0 32px; }
   @media (max-width: 640px) { .wrap { padding: 0 20px; } }
-  header { padding: 28px 0; border-bottom: 1px solid var(--line); }
+  header { padding: 22px 0; border-bottom: 1px solid var(--line); position: sticky; top: 0; background: rgba(10,10,12,0.85); backdrop-filter: blur(14px); }
   header .wrap { display: flex; justify-content: space-between; align-items: center; max-width: 1080px; }
-  .logo { font-family: var(--serif); font-size: 21px; font-weight: 600; color: var(--navy); text-decoration: none; }
-  .logo span { color: var(--brass); }
-  a.back { font-size: 14px; color: var(--charcoal-soft); text-decoration: none; }
-  a.back:hover { color: var(--navy); }
+  .logo { font-size: 19px; font-weight: 800; color: var(--white); text-decoration: none; letter-spacing: -0.01em; }
+  .logo span { background: linear-gradient(90deg, var(--blue), var(--pink)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  a.back { font-size: 14px; color: var(--grey); text-decoration: none; }
+  a.back:hover { color: var(--white); }
   main { padding: 64px 0 96px; }
-  h1 { font-family: var(--serif); font-size: 36px; color: var(--navy); font-weight: 600; margin-bottom: 8px; }
-  .updated { font-size: 14px; color: var(--charcoal-soft); margin-bottom: 40px; }
-  h2 { font-family: var(--serif); font-size: 21px; color: var(--navy); font-weight: 600; margin-top: 40px; margin-bottom: 12px; }
-  p { margin-bottom: 14px; font-size: 15.5px; color: var(--charcoal); }
+  h1 { font-size: 38px; color: var(--white); font-weight: 800; margin-bottom: 8px; letter-spacing: -0.01em; }
+  .updated { font-size: 14px; color: var(--grey-soft); margin-bottom: 40px; }
+  h2 {
+    font-size: 21px; font-weight: 700; margin-top: 40px; margin-bottom: 12px;
+    background: linear-gradient(90deg, var(--blue), var(--pink));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    display: inline-block;
+  }
+  p { margin-bottom: 14px; font-size: 15.5px; color: var(--grey); }
   ul, ol { padding-left: 22px; margin-bottom: 14px; }
-  li { margin-bottom: 8px; font-size: 15.5px; }
+  li { margin-bottom: 8px; font-size: 15.5px; color: var(--grey); }
   table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14.5px; }
-  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); }
-  th { color: var(--navy); font-weight: 600; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); color: var(--grey); }
+  th { color: var(--white); font-weight: 700; }
   .note {
-    background: var(--cream-panel);
-    border-left: 3px solid var(--brass);
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--purple);
     padding: 16px 20px;
     margin: 24px 0;
     font-size: 14.5px;
-    color: var(--charcoal-soft);
-    border-radius: 2px;
+    color: var(--grey);
+    border-radius: 8px;
   }
+  strong { color: var(--white); }
   footer { padding: 40px 0; border-top: 1px solid var(--line); }
-  footer .wrap { max-width: 1080px; display: flex; justify-content: space-between; font-size: 13.5px; color: var(--charcoal-soft); }
+  footer .wrap { max-width: 1080px; display: flex; justify-content: space-between; font-size: 13.5px; color: var(--grey); }
+  footer a { text-decoration: none; }
+  footer a:hover { color: var(--white); }
 </style>
 </head>
 <body>
@@ -93,7 +104,7 @@
   <h2>4. Who we share it with</h2>
   <ul>
     <li><strong>PayPal</strong> — to process payments.</li>
-    <li><strong>Netlify / GitHub</strong> — our hosting and code infrastructure providers.</li>
+    <li><strong>Cloudflare / GitHub</strong> — our hosting and code infrastructure providers.</li>
   </ul>
   <p>We do not sell your personal data to third parties.</p>
 
@@ -105,7 +116,15 @@
   <p>To exercise any of these rights, contact us at <a href="mailto:NestWebDigitalofficial@hotmail.com">NestWebDigitalofficial@hotmail.com</a>.</p>
 
   <h2>7. Cookies</h2>
-  <p>[Fill in once you confirm what your site actually uses.]</p>
+  <p>This site uses a small number of cookies and similar technologies:</p>
+  <ul>
+    <li><strong>Essential:</strong> a local storage entry that remembers your cookie preference (accepted or essential-only), so you're not asked again on every visit.</li>
+    <li><strong>Payments (PayPal):</strong> when you interact with a payment or subscription button, PayPal may set cookies to process the transaction and prevent fraud.</li>
+    <li><strong>Booking (Calendly):</strong> opening the booking popup may set cookies used to manage your scheduling session.</li>
+    <li><strong>Contact form (Formspree):</strong> submitting the contact form may set a cookie used for spam protection.</li>
+    <li><strong>Fonts (Google Fonts):</strong> this site loads fonts from Google's servers, which involves your browser contacting Google directly; no cookie is set by this on our end, but Google may process your IP address as part of serving the font files.</li>
+  </ul>
+  <p>You can choose "Essential only" in the cookie banner to decline the non-essential cookies described above where technically possible. Declining does not disable PayPal or Calendly's own cookies if you actively choose to use those features, since they are required for those services to function.</p>
 
   <h2>8. Changes to this policy</h2>
   <p>We may update this policy from time to time; the "last updated" date above will reflect the latest version.</p>
