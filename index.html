@@ -705,24 +705,28 @@
           <li><strong>Direct support</strong> — a simple way to reach us if something's not working.</li>
         </ul>
 
-        <!--
-          PAYPAL SUBSCRIPTION BUTTON
-          Replace YOUR_PLAN_ID_BASIC below with the Plan ID from a Subscription
-          product you create in your PayPal Business account
-          (PayPal Dashboard → Pay & Get Paid → Subscriptions).
-        -->
+        <!-- PayPal Subscription Button: €40/month Basic Plan -->
         <div class="paypal-slot">
-          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-            <input type="hidden" name="cmd" value="_xclick-subscriptions">
-            <input type="hidden" name="business" value="YOUR_PAYPAL_EMAIL">
-            <input type="hidden" name="item_name" value="NestWebDigital Basic Care Plan">
-            <input type="hidden" name="a3" value="40.00">
-            <input type="hidden" name="p3" value="1">
-            <input type="hidden" name="t3" value="M">
-            <input type="hidden" name="src" value="1">
-            <input type="hidden" name="currency_code" value="EUR">
-            <button type="submit" class="btn btn-secondary" style="width:100%;">Subscribe — €40/month</button>
-          </form>
+          <div id="paypal-button-container-P-7E543599JK418230NNKUZ7SA"></div>
+          <script src="https://www.paypal.com/sdk/js?client-id=BAA6AZU_yiNyyKcIkMetUV3qdRFCq-QmnviYafModK0xchs25sX-UtdcBsv5LDtKMwgNPhSg9KYAeZmIVo&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
+          <script>
+            paypal.Buttons({
+              style: {
+                shape: 'rect',
+                color: 'gold',
+                layout: 'vertical',
+                label: 'subscribe'
+              },
+              createSubscription: function(data, actions) {
+                return actions.subscription.create({
+                  plan_id: 'P-7E543599JK418230NNKUZ7SA'
+                });
+              },
+              onApprove: function(data, actions) {
+                alert(data.subscriptionID);
+              }
+            }).render('#paypal-button-container-P-7E543599JK418230NNKUZ7SA');
+          </script>
         </div>
       </div>
 
