@@ -283,7 +283,8 @@
   @media (max-width: 640px) { .step-row { grid-template-columns: 1fr; gap: 6px; } }
 
   /* ---------- Pricing ---------- */
-  .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  @media (max-width: 860px) { .pricing-grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 640px) { .pricing-grid { grid-template-columns: 1fr; } }
   .plan {
     background: var(--bg-panel); border: 1px solid var(--line); padding: 38px; border-radius: 20px;
@@ -831,16 +832,14 @@
           </script>
         </div>
       </div>
-    </div>
 
-    <!--
-      CARE PLAN — YEARLY
-      Once you create a yearly billing plan in PayPal (Dashboard →
-      Subscriptions → new plan, billing cycle: Yearly, price: €576),
-      replace YOUR_YEARLY_PLAN_ID_CARE below.
-    -->
-    <div class="pricing-grid" style="margin-top:24px;">
-      <div class="plan featured reveal" style="grid-column: 1 / -1; max-width: 420px; margin: 0 auto;">
+      <!--
+        CARE PLAN — YEARLY
+        Once you create a yearly billing plan in PayPal (Dashboard →
+        Subscriptions → new plan, billing cycle: Yearly, price: €576),
+        replace YOUR_YEARLY_PLAN_ID_CARE below.
+      -->
+      <div class="plan featured reveal">
         <div class="plan-name">Website Care Plan — Yearly</div>
         <div class="plan-price">€576<small> / year</small></div>
         <div class="yearly-price">
