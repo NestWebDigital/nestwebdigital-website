@@ -900,17 +900,15 @@
       <div>
         <h2>Book a free consultation</h2>
         <p>Pick a time that works for you and we'll walk through what a site for your business could look like — no pressure, no obligation.</p>
-        <a href="#" id="calendly-link" class="btn btn-primary">Open full calendar</a>
+        <!--
+          CALENDLY LINK — replace YOUR_CALENDLY_LINK below with your real
+          link once you have it, e.g. https://calendly.com/your-name/consultation
+        -->
+        <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/nestwebdigitalofficial/website-consultation-call'});return false;" class="btn btn-primary">Book a Call</a>
       </div>
 
-      <!--
-        CALENDLY EMBED
-        Replace the src below with your own Calendly link once you create
-        a free account at calendly.com, e.g.
-        https://calendly.com/your-username/consultation
-      -->
       <div class="calendly-embed">
-        <p>Calendly booking widget goes here.<br>Swap in your Calendly link to activate it.</p>
+        <p>Click "Book a Call" to open the scheduling popup.<br>Once your real Calendly link is added, this becomes fully live.</p>
       </div>
     </div>
   </div>
@@ -1014,5 +1012,7 @@
   });
 </script>
 
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 </body>
 </html>
