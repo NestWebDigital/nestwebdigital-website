@@ -7,20 +7,21 @@
 <meta name="description" content="We design, build, and host your business website, then handle every update after that.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #1B2A3D;
-    --navy-deep: #131E2C;
-    --cream: #F7F5F0;
-    --cream-panel: #F0ECE3;
-    --brass: #A8843D;
-    --brass-light: #C4A05E;
-    --charcoal: #2B2B2B;
-    --charcoal-soft: #5A5A54;
-    --line: #D9D3C4;
-    --serif: 'Source Serif 4', Georgia, serif;
-    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --bg: #0A0A0C;
+    --bg-panel: #131316;
+    --bg-panel-2: #1B1B1F;
+    --white: #F5F5F7;
+    --grey: #A6A6AD;
+    --grey-soft: #77777F;
+    --line: #26262B;
+    --blue: #5B7FFF;
+    --pink: #FF6FB3;
+    --purple: #9B6BFF;
+    --lime: #C9F05B;
+    --sans: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -28,8 +29,8 @@
 
   body {
     font-family: var(--sans);
-    color: var(--charcoal);
-    background: var(--cream);
+    color: var(--white);
+    background: var(--bg);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
@@ -38,7 +39,7 @@
   a { color: inherit; }
   img, svg { display: block; max-width: 100%; }
 
-  :focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
@@ -49,74 +50,219 @@
     }
   }
 
-  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
   @media (max-width: 640px) { .wrap { padding: 0 20px; } }
+
+  /* ---------- Floating gradient blobs ---------- */
+  .blob {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 0;
+    pointer-events: none;
+  }
+  .blob-1 { top: -180px; right: -160px; width: 560px; height: 560px; background: radial-gradient(circle, var(--blue), transparent 70%); opacity: 0.35; animation: drift1 16s ease-in-out infinite; }
+  .blob-2 { top: 700px; left: -200px; width: 500px; height: 500px; background: radial-gradient(circle, var(--pink), transparent 70%); opacity: 0.25; animation: drift2 20s ease-in-out infinite; }
+  .blob-3 { top: 1700px; right: -180px; width: 520px; height: 520px; background: radial-gradient(circle, var(--purple), transparent 70%); opacity: 0.3; animation: drift1 18s ease-in-out infinite reverse; }
+  .blob-4 { top: 2700px; left: -160px; width: 460px; height: 460px; background: radial-gradient(circle, var(--lime), transparent 70%); opacity: 0.18; animation: drift2 22s ease-in-out infinite; }
+
+  @keyframes drift1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-40px, 50px) scale(1.1); }
+  }
+  @keyframes drift2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(50px, -40px) scale(1.08); }
+  }
 
   /* ---------- Reveal-on-scroll ---------- */
   .reveal {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(22px);
     transition: opacity 0.7s ease, transform 0.7s ease;
   }
   .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
   /* ---------- Header ---------- */
   header {
-    padding: 24px 0;
+    padding: 22px 0;
     border-bottom: 1px solid var(--line);
     position: sticky;
     top: 0;
-    background: rgba(247, 245, 240, 0.92);
-    backdrop-filter: blur(8px);
+    background: rgba(10, 10, 12, 0.75);
+    backdrop-filter: blur(14px);
     z-index: 50;
   }
   header .wrap { display: flex; justify-content: space-between; align-items: center; }
-  .logo { font-family: var(--serif); font-size: 21px; font-weight: 600; color: var(--navy); text-decoration: none; }
-  .logo span { color: var(--brass); }
-  nav ul { display: flex; gap: 36px; list-style: none; }
-  nav a { text-decoration: none; font-size: 15px; color: var(--charcoal-soft); position: relative; }
-  nav a::after {
-    content: ''; position: absolute; left: 0; bottom: -4px; width: 0; height: 1px;
-    background: var(--brass); transition: width 0.25s ease;
+  .logo { font-size: 19px; font-weight: 800; color: var(--white); text-decoration: none; letter-spacing: -0.01em; }
+  .logo span { background: linear-gradient(90deg, var(--blue), var(--pink)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  nav ul { display: flex; gap: 32px; list-style: none; }
+  nav a { text-decoration: none; font-size: 14.5px; font-weight: 500; color: var(--grey); position: relative; transition: color 0.2s ease; }
+  nav a:hover { color: var(--white); }
+  @media (max-width: 640px) { nav ul { gap: 14px; } nav a { font-size: 12px; } }
+
+  /* ---------- Buttons (pill style) ---------- */
+  .btn {
+    display: inline-block; padding: 15px 30px; font-size: 15px; font-weight: 700;
+    text-decoration: none; border-radius: 999px; border: 1px solid transparent; cursor: pointer;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
   }
-  nav a:hover { color: var(--navy); }
-  nav a:hover::after { width: 100%; }
-  @media (max-width: 640px) { nav ul { gap: 16px; } nav a { font-size: 12.5px; } }
+  .btn:active { transform: scale(0.97); }
+  .btn-primary {
+    background: linear-gradient(90deg, var(--blue), var(--purple));
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(91,127,255,0.3);
+  }
+  .btn-primary:hover { box-shadow: 0 10px 30px rgba(91,127,255,0.45); transform: translateY(-1px); }
+  .btn-secondary { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.25); }
+  .btn-secondary:hover { border-color: var(--white); background: rgba(255,255,255,0.06); }
+  .btn-gold {
+    background: linear-gradient(90deg, #E9C46A, #D4AF37);
+    color: #1A1408;
+    box-shadow: 0 8px 24px rgba(212,175,55,0.3);
+  }
+  .btn-gold:hover { box-shadow: 0 10px 30px rgba(212,175,55,0.45); transform: translateY(-1px); }
 
   /* ---------- Hero ---------- */
-  .hero { padding: 100px 0 88px; }
+  .hero { padding: 110px 0 90px; }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; }
+  @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } }
   .hero-inner { max-width: 640px; }
-  .hero-eyebrow { font-size: 15px; color: var(--brass); font-weight: 500; margin-bottom: 18px; }
+  .hero-eyebrow {
+    display: inline-block; font-size: 13.5px; font-weight: 700; color: var(--white);
+    background: var(--bg-panel-2); border: 1px solid var(--line); padding: 6px 16px;
+    border-radius: 999px; margin-bottom: 22px;
+  }
   h1 {
-    font-family: var(--serif); font-size: 54px; line-height: 1.14; font-weight: 600;
-    color: var(--navy); letter-spacing: -0.01em;
+    font-size: 56px; line-height: 1.08; font-weight: 800;
+    color: var(--white); letter-spacing: -0.02em;
   }
-  .hero-sub { margin-top: 24px; font-size: 18px; color: var(--charcoal-soft); max-width: 520px; }
-  .hero-actions { margin-top: 36px; display: flex; gap: 16px; flex-wrap: wrap; }
-  @media (max-width: 640px) { h1 { font-size: 34px; } .hero { padding: 56px 0 56px; } .hero-sub { font-size: 16px; } }
-
-  .btn {
-    display: inline-block; padding: 14px 28px; font-size: 15px; font-weight: 500;
-    text-decoration: none; border-radius: 3px; border: 1px solid transparent; cursor: pointer;
-    transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+  h1 .grad {
+    background: linear-gradient(90deg, var(--blue), var(--pink) 60%, var(--purple));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
   }
-  .btn:active { transform: scale(0.98); }
-  .btn-primary { background: var(--navy); color: var(--cream); }
-  .btn-primary:hover { background: var(--navy-deep); }
-  .btn-secondary { background: transparent; color: var(--navy); border-color: var(--navy); }
-  .btn-secondary:hover { background: var(--navy); color: var(--cream); }
+  .hero-sub { margin-top: 24px; font-size: 18px; color: var(--grey); max-width: 500px; }
+  .hero-actions { margin-top: 38px; display: flex; gap: 16px; flex-wrap: wrap; }
+  @media (max-width: 640px) { h1 { font-size: 36px; } .hero { padding: 60px 0 56px; } .hero-sub { font-size: 16px; } }
 
-  /* ---------- Proof strip ---------- */
-  .proof { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 22px 0; background: var(--cream-panel); }
-  .proof .wrap { display: flex; gap: 48px; flex-wrap: wrap; font-size: 14px; color: var(--charcoal-soft); }
-  .proof strong { color: var(--navy); font-weight: 600; }
+  /* ---------- Hero animated device ---------- */
+  .device-stage { perspective: 1200px; display: flex; align-items: center; justify-content: center; padding: 20px; }
+  .device {
+    position: relative; width: 100%; max-width: 340px; transform-style: preserve-3d;
+    animation: deviceSpinIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) both, deviceFloat 5s ease-in-out 1.4s infinite;
+  }
+  @keyframes deviceSpinIn {
+    0% { transform: rotateY(-140deg) rotateX(10deg) translateY(40px) scale(0.7); opacity: 0; }
+    100% { transform: rotateY(-18deg) rotateX(6deg) translateY(0) scale(1); opacity: 1; }
+  }
+  @keyframes deviceFloat {
+    0%, 100% { transform: rotateY(-18deg) rotateX(6deg) translateY(0); }
+    50% { transform: rotateY(-14deg) rotateX(4deg) translateY(-10px); }
+  }
+  .device svg { width: 100%; height: auto; display: block; filter: drop-shadow(0 30px 50px rgba(91,127,255,0.25)); }
+  @media (prefers-reduced-motion: reduce) { .device { animation: none; transform: rotateY(-14deg) rotateX(5deg); } }
 
-  /* ---------- Sections ---------- */
-  section { padding: 88px 0; }
-  @media (max-width: 640px) { section { padding: 56px 0; } }
-  .section-head { max-width: 560px; margin-bottom: 48px; }
-  .section-head h2 { font-family: var(--serif); font-size: 32px; font-weight: 600; color: var(--navy); line-height: 1.25; }
-  .section-head p { margin-top: 14px; color: var(--charcoal-soft); font-size: 16px; }
+  /* ---------- Showcase (example sites) ---------- */
+  .showcase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  @media (max-width: 860px) { .showcase-grid { grid-template-columns: 1fr; } }
+  .showcase-card {
+    background: var(--bg-panel); border: 1px solid var(--line); border-radius: 18px;
+    overflow: hidden; transition: transform 0.35s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.35s ease, border-color 0.35s ease;
+  }
+  .showcase-card:hover {
+    transform: translateY(-8px) scale(1.015);
+    box-shadow: 0 24px 50px rgba(91,127,255,0.18);
+    border-color: rgba(255,255,255,0.22);
+  }
+  .showcase-mock { padding: 16px; }
+  .showcase-mock svg { width: 100%; height: auto; border-radius: 10px; }
+  .showcase-info { padding: 4px 22px 24px; }
+  .showcase-info .tag {
+    display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--grey); margin-bottom: 8px;
+  }
+  .showcase-info h3 { font-size: 17px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+  .showcase-info p { font-size: 13.5px; color: var(--grey); }
+
+  .bar-anim rect { animation: barPulse 2.4s ease-in-out infinite; }
+  .bar-anim rect:nth-child(2) { animation-delay: 0.15s; }
+  .bar-anim rect:nth-child(3) { animation-delay: 0.3s; }
+  @keyframes barPulse {
+    0%, 100% { opacity: 0.55; }
+    50% { opacity: 1; }
+  }
+
+  .cursor-blink { animation: cursorBlink 1.1s step-end infinite; }
+  @keyframes cursorBlink { 50% { opacity: 0; } }
+  .proof { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 22px 0; background: var(--bg-panel); }
+  .proof .wrap { display: flex; gap: 48px; flex-wrap: wrap; font-size: 14px; color: var(--grey); }
+  .proof strong { color: var(--white); font-weight: 700; }
+
+  /* ---------- Showcase ---------- */
+  .showcase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  @media (max-width: 860px) { .showcase-grid { grid-template-columns: 1fr; } }
+
+  .mock-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.35s ease, box-shadow 0.35s ease;
+    cursor: default;
+  }
+  .mock-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(255,255,255,0.25);
+    box-shadow: 0 24px 60px rgba(91,127,255,0.18);
+  }
+  .mock-chrome {
+    display: flex; gap: 6px; padding: 12px 14px;
+    border-bottom: 1px solid var(--line);
+  }
+  .mock-chrome span { width: 9px; height: 9px; border-radius: 50%; background: #3A3A42; }
+  .mock-screen { padding: 18px; height: 170px; display: flex; flex-direction: column; gap: 10px; }
+  .mock-bar { border-radius: 5px; }
+  .mock-info { padding: 18px 20px 22px; }
+  .mock-info h3 { font-size: 15.5px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+  .mock-info p { font-size: 13.5px; color: var(--grey); }
+
+  /* restaurant mock */
+  .mock-restaurant .mock-screen { background: linear-gradient(160deg, #241418, #17171C); }
+  .mock-restaurant .m1 { width: 55%; height: 12px; background: linear-gradient(90deg, var(--pink), var(--purple)); }
+  .mock-restaurant .m2 { width: 80%; height: 6px; background: #3E3E48; }
+  .mock-restaurant .m3 { width: 60%; height: 6px; background: #3E3E48; }
+  .mock-restaurant .m4 { flex: 1; margin-top: 6px; border-radius: 10px; background: #2A1E20; display: flex; align-items: flex-end; padding: 10px; }
+  .mock-restaurant .m4 span { width: 30%; height: 16px; border-radius: 4px; background: var(--pink); opacity: 0.85; }
+
+  /* salon mock */
+  .mock-salon .mock-screen { background: linear-gradient(160deg, #1A1826, #17171C); }
+  .mock-salon .m1 { width: 45%; height: 12px; background: linear-gradient(90deg, var(--purple), var(--blue)); }
+  .mock-salon .m2 { width: 70%; height: 6px; background: #3E3E48; }
+  .mock-salon .grid3 { flex: 1; display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; margin-top: 6px; }
+  .mock-salon .grid3 div { border-radius: 8px; background: #241F32; }
+
+  /* contractor mock */
+  .mock-contractor .mock-screen { background: linear-gradient(160deg, #14201C, #17171C); }
+  .mock-contractor .m1 { width: 60%; height: 12px; background: linear-gradient(90deg, var(--lime), var(--blue)); }
+  .mock-contractor .m2 { width: 85%; height: 6px; background: #3E3E48; }
+  .mock-contractor .m3 { width: 50%; height: 6px; background: #3E3E48; }
+  .mock-contractor .stat-row { flex: 1; display: flex; align-items: flex-end; gap: 8px; margin-top: 6px; }
+  .mock-contractor .stat-row div { flex: 1; border-radius: 6px 6px 0 0; background: linear-gradient(180deg, var(--lime), transparent); }
+
+  /* ---------- Ticker ---------- */
+  .ticker-wrap { overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 20px 0; background: var(--bg-panel); }
+  .ticker { display: flex; gap: 50px; white-space: nowrap; animation: tickerMove 22s linear infinite; width: max-content; }
+  .ticker span { font-size: 14px; font-weight: 600; color: var(--grey-soft); letter-spacing: 0.03em; }
+  .ticker span.dot { color: var(--purple); }
+  @keyframes tickerMove {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  section { padding: 96px 0; position: relative; }
+  @media (max-width: 640px) { section { padding: 60px 0; } }
+  .section-head { max-width: 560px; margin-bottom: 52px; }
+  .section-head h2 { font-size: 34px; font-weight: 800; color: var(--white); line-height: 1.2; letter-spacing: -0.01em; }
+  .section-head p { margin-top: 14px; color: var(--grey); font-size: 16px; }
 
   /* ---------- Steps ---------- */
   .step-row {
@@ -124,113 +270,137 @@
     border-bottom: 1px solid var(--line);
   }
   .step-row:first-of-type { padding-top: 0; }
-  .step-num { font-family: var(--serif); font-size: 28px; color: var(--brass); font-weight: 500; }
-  .step-body h3 { font-size: 18px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
-  .step-body p { color: var(--charcoal-soft); font-size: 15px; max-width: 520px; }
+  .step-num {
+    font-size: 30px; font-weight: 800;
+    background: linear-gradient(135deg, var(--blue), var(--pink));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+  .step-row:hover .step-num { transform: scale(1.15) rotate(-4deg); }
+  .step-body h3 { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+  .step-body p { color: var(--grey); font-size: 15px; max-width: 520px; }
   @media (max-width: 640px) { .step-row { grid-template-columns: 1fr; gap: 6px; } }
 
   /* ---------- Pricing ---------- */
-  .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-  @media (max-width: 720px) { .pricing-grid { grid-template-columns: 1fr; } }
+  .pricing-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+  @media (max-width: 960px) { .pricing-grid { grid-template-columns: 1fr; } }
   .plan {
-    background: var(--cream-panel); border: 1px solid var(--line); padding: 36px; border-radius: 4px;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    background: var(--bg-panel); border: 1px solid var(--line); padding: 38px; border-radius: 20px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   }
-  .plan:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(27,42,61,0.08); }
-  .plan.featured { background: var(--navy); color: var(--cream); border-color: var(--navy); }
-  .plan-name { font-size: 14px; font-weight: 600; color: var(--brass); margin-bottom: 6px; }
-  .plan.featured .plan-name { color: var(--brass-light); }
-  .plan-price { font-family: var(--serif); font-size: 38px; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
-  .plan.featured .plan-price { color: var(--cream); }
-  .plan-price small { font-family: var(--sans); font-size: 14px; font-weight: 400; color: var(--charcoal-soft); }
-  .plan.featured .plan-price small { color: #B8C2CE; }
-  .plan-desc { margin: 14px 0 22px; font-size: 14px; color: var(--charcoal-soft); }
-  .plan.featured .plan-desc { color: #C7CFD8; }
-  .plan ul { list-style: none; margin-bottom: 28px; }
-  .plan li { font-size: 14.5px; padding: 9px 0; border-top: 1px solid var(--line); color: var(--charcoal); }
-  .plan.featured li { border-top-color: rgba(255,255,255,0.15); color: #E6E9ED; }
+  .plan:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.2); }
+  .plan.featured {
+    background: linear-gradient(165deg, #17171C, #1E1B2A);
+    border: 1px solid rgba(155,107,255,0.4);
+    box-shadow: 0 20px 60px rgba(91,127,255,0.15);
+  }
+  .plan.gold {
+    background: linear-gradient(165deg, #1C1712, #241C10);
+    border: 1px solid rgba(212,175,55,0.45);
+    box-shadow: 0 20px 60px rgba(212,175,55,0.15);
+  }
+  .plan-name { font-size: 13.5px; font-weight: 700; color: var(--grey); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .plan.featured .plan-name {
+    background: linear-gradient(90deg, var(--blue), var(--pink));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .plan.gold .plan-name {
+    background: linear-gradient(90deg, #E9C46A, #D4AF37);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .plan-price { font-size: 42px; font-weight: 800; color: var(--white); margin-bottom: 4px; letter-spacing: -0.01em; }
+  .plan-price small { font-size: 14px; font-weight: 500; color: var(--grey); }
+  .plan-desc { margin: 14px 0 24px; font-size: 14.5px; color: var(--grey); }
+  .plan ul { list-style: none; margin-bottom: 30px; }
+  .plan li { font-size: 14.5px; padding: 11px 0; border-top: 1px solid var(--line); color: var(--white); }
   .plan li:first-child { border-top: none; }
+  .plan li strong { color: var(--white); }
   .plan .btn { width: 100%; text-align: center; }
-  .plan.featured .btn-secondary { border-color: var(--cream); color: var(--cream); }
-  .plan.featured .btn-secondary:hover { background: var(--cream); color: var(--navy); }
   .paypal-slot { margin-top: 12px; }
 
   /* ---------- Maintain ---------- */
-  .maintain { background: var(--cream-panel); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .maintain { background: var(--bg-panel); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
   .maintain .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
   @media (max-width: 720px) { .maintain .wrap { grid-template-columns: 1fr; gap: 32px; } }
-  .maintain h2 { font-family: var(--serif); font-size: 28px; color: var(--navy); font-weight: 600; line-height: 1.3; }
-  .maintain p { margin-top: 14px; color: var(--charcoal-soft); font-size: 15px; }
-  .maintain-card { background: var(--cream); border: 1px solid var(--line); border-radius: 4px; padding: 28px; }
-  .maintain-card ol { padding-left: 20px; font-size: 14.5px; color: var(--charcoal); }
-  .maintain-card li { padding: 6px 0; }
+  .maintain h2 { font-size: 28px; color: var(--white); font-weight: 800; line-height: 1.3; letter-spacing: -0.01em; }
+  .maintain p { margin-top: 12px; color: var(--grey); font-size: 15px; }
+  .maintain-card { background: var(--bg-panel-2); border: 1px solid var(--line); border-radius: 16px; padding: 30px; }
+  .maintain-card ol { padding-left: 20px; font-size: 14.5px; color: var(--white); }
+  .maintain-card li { padding: 7px 0; }
 
   /* ---------- Booking ---------- */
-  .booking { border-top: 1px solid var(--line); }
   .booking-panel {
-    background: var(--navy); color: var(--cream); border-radius: 4px; padding: 48px;
+    background: linear-gradient(135deg, #17171C, #1B1B24);
+    border: 1px solid var(--line);
+    border-radius: 24px; padding: 48px;
     display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
   }
   @media (max-width: 720px) { .booking-panel { grid-template-columns: 1fr; padding: 32px; } }
-  .booking-panel h2 { font-family: var(--serif); font-size: 28px; font-weight: 600; }
-  .booking-panel p { margin-top: 12px; color: #C7CFD8; font-size: 15px; }
-  .booking-panel .btn-secondary { border-color: var(--cream); color: var(--cream); margin-top: 20px; }
-  .booking-panel .btn-secondary:hover { background: var(--cream); color: var(--navy); }
-  .calendly-embed { background: var(--cream); border-radius: 4px; min-height: 280px; display: flex; align-items: center; justify-content: center; padding: 24px; }
-  .calendly-embed p { color: var(--charcoal-soft); font-size: 13.5px; text-align: center; }
+  .booking-panel h2 { font-size: 28px; font-weight: 800; color: var(--white); letter-spacing: -0.01em; }
+  .booking-panel p { margin-top: 12px; color: var(--grey); font-size: 15px; }
+  .booking-panel .btn-primary { margin-top: 22px; }
+  .calendly-embed { background: var(--bg); border: 1px solid var(--line); border-radius: 16px; min-height: 280px; display: flex; align-items: center; justify-content: center; padding: 24px; }
+  .calendly-embed p { color: var(--grey-soft); font-size: 13.5px; text-align: center; }
 
   /* ---------- Contact ---------- */
-  .contact { border-top: 1px solid var(--line); }
   .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
   @media (max-width: 720px) { .contact-grid { grid-template-columns: 1fr; gap: 40px; } }
-  .contact-block h3 { font-family: var(--serif); font-size: 20px; color: var(--navy); font-weight: 600; margin-bottom: 10px; }
-  .contact-block p { color: var(--charcoal-soft); font-size: 14.5px; margin-bottom: 20px; }
+  .contact-block h3 { font-size: 20px; color: var(--white); font-weight: 700; margin-bottom: 10px; }
+  .contact-block p { color: var(--grey); font-size: 14.5px; margin-bottom: 20px; }
   form { display: flex; flex-direction: column; gap: 14px; }
-  label { font-size: 13px; font-weight: 500; color: var(--navy); margin-bottom: 4px; display: block; }
+  label { font-size: 13px; font-weight: 600; color: var(--white); margin-bottom: 4px; display: block; }
   input, textarea {
-    width: 100%; font-family: var(--sans); font-size: 15px; padding: 11px 13px;
-    border: 1px solid var(--line); border-radius: 3px; background: var(--cream); color: var(--charcoal);
+    width: 100%; font-family: var(--sans); font-size: 15px; padding: 13px 15px;
+    border: 1px solid var(--line); border-radius: 10px; background: var(--bg-panel); color: var(--white);
     transition: border-color 0.18s ease;
   }
-  input:focus, textarea:focus { border-color: var(--brass); }
+  input::placeholder, textarea::placeholder { color: var(--grey-soft); }
+  input:focus, textarea:focus { border-color: var(--blue); }
   textarea { resize: vertical; min-height: 90px; }
   form .btn { align-self: flex-start; margin-top: 6px; }
 
   /* ---------- Footer ---------- */
   footer { padding: 40px 0; border-top: 1px solid var(--line); }
-  footer .wrap { display: flex; justify-content: space-between; align-items: center; font-size: 13.5px; color: var(--charcoal-soft); flex-wrap: wrap; gap: 10px; }
+  footer .wrap { display: flex; justify-content: space-between; align-items: center; font-size: 13.5px; color: var(--grey); flex-wrap: wrap; gap: 10px; }
   footer .legal-links a { text-decoration: none; margin-left: 4px; }
-  footer .legal-links a:hover { color: var(--navy); }
+  footer .legal-links a:hover { color: var(--white); }
 
   /* ---------- Cookie banner ---------- */
   #cookie-banner {
     position: fixed; left: 20px; right: 20px; bottom: 20px; max-width: 560px; margin: 0 auto;
-    background: var(--navy); color: var(--cream); border-radius: 6px; padding: 22px 24px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.25); z-index: 200;
+    background: var(--bg-panel-2); border: 1px solid var(--line); color: var(--white); border-radius: 16px; padding: 22px 24px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5); z-index: 200;
     transform: translateY(140%); transition: transform 0.5s ease;
   }
   #cookie-banner.show { transform: translateY(0); }
-  #cookie-banner p { font-size: 13.5px; color: #D7DCE2; margin-bottom: 16px; line-height: 1.55; }
-  #cookie-banner a { color: var(--brass-light); text-decoration: underline; }
+  #cookie-banner p { font-size: 13.5px; color: var(--grey); margin-bottom: 16px; line-height: 1.55; }
+  #cookie-banner a { color: var(--blue); text-decoration: underline; }
   .cookie-actions { display: flex; gap: 10px; flex-wrap: wrap; }
   .cookie-actions button {
-    font-family: var(--sans); font-size: 13.5px; font-weight: 500; padding: 9px 18px;
-    border-radius: 3px; cursor: pointer; border: 1px solid transparent;
+    font-family: var(--sans); font-size: 13.5px; font-weight: 700; padding: 10px 20px;
+    border-radius: 999px; cursor: pointer; border: 1px solid transparent;
   }
-  #cookie-accept { background: var(--brass); color: var(--navy-deep); }
-  #cookie-accept:hover { background: var(--brass-light); }
-  #cookie-decline { background: transparent; color: var(--cream); border-color: rgba(247,245,240,0.4); }
-  #cookie-decline:hover { border-color: var(--cream); }
+  #cookie-accept { background: linear-gradient(90deg, var(--blue), var(--purple)); color: #fff; }
+  #cookie-decline { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.25); }
+  #cookie-decline:hover { border-color: var(--white); }
 </style>
+<script src="https://www.paypal.com/sdk/js?client-id=BAAiNRHCUGoEuf8jRUvTJgVMmZ7xlX4V7Q_PskDLmnNWAgMfzrqQmrtxD4rmvy99-tMoLJvNExZ_NplDRk&components=hosted-buttons&disable-funding=venmo&currency=EUR"></script>
 </head>
 <body>
+
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+<div class="blob blob-4"></div>
 
 <header>
   <div class="wrap">
     <a href="#" class="logo">Nest<span>Web</span>Digital</a>
     <nav>
       <ul>
-        <li><a href="#how">How it works</a></li>
+        <li><a href="#how">Our work</a></li>
+        <li><a href="#process">How it works</a></li>
         <li><a href="#pricing">Pricing</a></li>
         <li><a href="#booking">Book a call</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -240,14 +410,48 @@
 </header>
 
 <section class="hero">
-  <div class="wrap">
+  <div class="wrap hero-grid">
     <div class="hero-inner reveal">
-      <p class="hero-eyebrow">Websites for local businesses</p>
-      <h1>A website built for your business, kept up to date for you.</h1>
+      <span class="hero-eyebrow">Websites for local businesses</span>
+      <h1>A website that's <span class="grad">built, hosted, and kept up to date</span> for you.</h1>
       <p class="hero-sub">We design, build, and host your site — then handle every update after that. No contracts to read, no code to learn. You call, we change it.</p>
       <div class="hero-actions">
         <a href="#booking" class="btn btn-primary">Book a free consultation</a>
         <a href="#pricing" class="btn btn-secondary">See pricing</a>
+      </div>
+    </div>
+    <div class="device-stage" aria-hidden="true">
+      <div class="device">
+        <svg viewBox="0 0 340 260" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="screenGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#1B1B24"/>
+              <stop offset="100%" stop-color="#0F0F14"/>
+            </linearGradient>
+            <linearGradient id="baseGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#2A2A32"/>
+              <stop offset="100%" stop-color="#18181D"/>
+            </linearGradient>
+            <linearGradient id="accentGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#5B7FFF"/>
+              <stop offset="100%" stop-color="#FF6FB3"/>
+            </linearGradient>
+          </defs>
+          <path d="M40 220 L300 220 L320 245 L20 245 Z" fill="url(#baseGrad)"/>
+          <rect x="150" y="224" width="40" height="6" rx="3" fill="#3A3A42"/>
+          <rect x="55" y="20" width="230" height="150" rx="10" fill="url(#screenGrad)"/>
+          <rect x="55" y="20" width="230" height="150" rx="10" fill="none" stroke="#2E2E36" stroke-width="2"/>
+          <rect x="75" y="40" width="70" height="8" rx="4" fill="url(#accentGrad)"/>
+          <rect x="75" y="56" width="130" height="6" rx="3" fill="#3E3E48"/>
+          <rect x="75" y="68" width="100" height="6" rx="3" fill="#3E3E48"/>
+          <rect x="75" y="90" width="60" height="40" rx="6" fill="#25252D"/>
+          <rect x="145" y="90" width="60" height="40" rx="6" fill="#25252D"/>
+          <rect x="215" y="90" width="45" height="40" rx="6" fill="#25252D"/>
+          <rect x="75" y="140" width="90" height="10" rx="5" fill="url(#accentGrad)"/>
+          <rect x="175" y="141" width="8" height="8" rx="1" fill="#F5F5F7">
+            <animate attributeName="opacity" values="1;0;1" dur="1.1s" repeatCount="indefinite"/>
+          </rect>
+        </svg>
       </div>
     </div>
   </div>
@@ -261,7 +465,167 @@
   </div>
 </div>
 
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span>Restaurants <span class="dot">●</span></span>
+    <span>Salons &amp; spas <span class="dot">●</span></span>
+    <span>Contractors <span class="dot">●</span></span>
+    <span>Local shops <span class="dot">●</span></span>
+    <span>Clinics <span class="dot">●</span></span>
+    <span>Restaurants <span class="dot">●</span></span>
+    <span>Salons &amp; spas <span class="dot">●</span></span>
+    <span>Contractors <span class="dot">●</span></span>
+    <span>Local shops <span class="dot">●</span></span>
+    <span>Clinics <span class="dot">●</span></span>
+  </div>
+</div>
+
+<section id="work">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Which businesses we build for</h2>
+      <p>Every site is custom to the business — here's the kind of look we design.</p>
+    </div>
+    <div class="showcase-grid">
+      <div class="mock-card mock-restaurant reveal">
+        <div class="mock-chrome"><span></span><span></span><span></span></div>
+        <div class="mock-screen">
+          <div class="mock-bar m1"></div>
+          <div class="mock-bar m2"></div>
+          <div class="mock-bar m3"></div>
+          <div class="m4"><span></span></div>
+        </div>
+        <div class="mock-info">
+          <h3>Restaurant &amp; cafe sites</h3>
+          <p>Menus, hours, and online ordering front and center.</p>
+        </div>
+      </div>
+      <div class="mock-card mock-salon reveal">
+        <div class="mock-chrome"><span></span><span></span><span></span></div>
+        <div class="mock-screen">
+          <div class="mock-bar m1"></div>
+          <div class="mock-bar m2"></div>
+          <div class="grid3"><div></div><div></div><div></div></div>
+        </div>
+        <div class="mock-info">
+          <h3>Salons &amp; local services</h3>
+          <p>Booking-first layouts that turn visits into appointments.</p>
+        </div>
+      </div>
+      <div class="mock-card mock-contractor reveal">
+        <div class="mock-chrome"><span></span><span></span><span></span></div>
+        <div class="mock-screen">
+          <div class="mock-bar m1"></div>
+          <div class="mock-bar m2"></div>
+          <div class="mock-bar m3"></div>
+          <div class="stat-row"><div style="height:40%"></div><div style="height:70%"></div><div style="height:55%"></div><div style="height:85%"></div></div>
+        </div>
+        <div class="mock-info">
+          <h3>Contractors &amp; trades</h3>
+          <p>Trust-building pages with reviews, photos, and quote requests.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="how">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Websites we build</h2>
+      <p>A look at the kind of sites your customers actually see — clean, fast, and built for your industry.</p>
+    </div>
+    <div class="showcase-grid">
+      <div class="showcase-card reveal">
+        <div class="showcase-mock">
+          <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="s1bg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#2A1B12"/><stop offset="100%" stop-color="#120E0B"/>
+              </linearGradient>
+            </defs>
+            <rect width="300" height="200" rx="10" fill="url(#s1bg)"/>
+            <circle cx="16" cy="14" r="3" fill="#FF6F6F"/>
+            <circle cx="28" cy="14" r="3" fill="#F0C060"/>
+            <circle cx="40" cy="14" r="3" fill="#6FCF97"/>
+            <rect x="16" y="34" width="90" height="12" rx="3" fill="#FF9F4A"/>
+            <rect x="16" y="54" width="150" height="6" rx="3" fill="#4A4038"/>
+            <g class="bar-anim">
+              <rect x="16" y="76" width="80" height="60" rx="6" fill="#3A2A1E"/>
+              <rect x="104" y="76" width="80" height="60" rx="6" fill="#3A2A1E"/>
+              <rect x="192" y="76" width="80" height="60" rx="6" fill="#3A2A1E"/>
+            </g>
+            <rect x="16" y="150" width="70" height="18" rx="9" fill="#FF9F4A"/>
+          </svg>
+        </div>
+        <div class="showcase-info">
+          <span class="tag">Restaurant</span>
+          <h3>Menu, hours &amp; online orders</h3>
+          <p>Built for cafés and kebab shops — menu up front, hours always current.</p>
+        </div>
+      </div>
+
+      <div class="showcase-card reveal" style="transition-delay:0.08s">
+        <div class="showcase-mock">
+          <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="s2bg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#1A1230"/><stop offset="100%" stop-color="#0D0A18"/>
+              </linearGradient>
+            </defs>
+            <rect width="300" height="200" rx="10" fill="url(#s2bg)"/>
+            <circle cx="16" cy="14" r="3" fill="#FF6F6F"/>
+            <circle cx="28" cy="14" r="3" fill="#F0C060"/>
+            <circle cx="40" cy="14" r="3" fill="#6FCF97"/>
+            <rect x="16" y="34" width="70" height="12" rx="3" fill="#9B6BFF"/>
+            <rect x="16" y="54" width="140" height="6" rx="3" fill="#3A3252"/>
+            <circle cx="60" cy="105" r="34" fill="#241A40"/>
+            <rect x="110" y="80" width="160" height="8" rx="4" fill="#3A3252"/>
+            <rect x="110" y="96" width="120" height="8" rx="4" fill="#3A3252"/>
+            <rect x="110" y="112" width="140" height="8" rx="4" fill="#3A3252"/>
+            <rect x="16" y="150" width="70" height="18" rx="9" fill="#9B6BFF"/>
+          </svg>
+        </div>
+        <div class="showcase-info">
+          <span class="tag">Salon &amp; services</span>
+          <h3>Booking front and center</h3>
+          <p>Appointment-driven layout with your services and pricing clearly laid out.</p>
+        </div>
+      </div>
+
+      <div class="showcase-card reveal" style="transition-delay:0.16s">
+        <div class="showcase-mock">
+          <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="s3bg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#0F2318"/><stop offset="100%" stop-color="#0A140F"/>
+              </linearGradient>
+            </defs>
+            <rect width="300" height="200" rx="10" fill="url(#s3bg)"/>
+            <circle cx="16" cy="14" r="3" fill="#FF6F6F"/>
+            <circle cx="28" cy="14" r="3" fill="#F0C060"/>
+            <circle cx="40" cy="14" r="3" fill="#6FCF97"/>
+            <rect x="16" y="34" width="100" height="12" rx="3" fill="#C9F05B"/>
+            <rect x="16" y="54" width="130" height="6" rx="3" fill="#2A3B2E"/>
+            <rect x="16" y="76" width="268" height="46" rx="6" fill="#16281C"/>
+            <rect x="16" y="130" width="60" height="6" rx="3" fill="#2A3B2E"/>
+            <rect x="86" y="130" width="60" height="6" rx="3" fill="#2A3B2E"/>
+            <rect x="156" y="130" width="60" height="6" rx="3" fill="#2A3B2E"/>
+            <rect x="16" y="150" width="70" height="18" rx="9" fill="#C9F05B"/>
+            <rect x="255" y="151" width="10" height="10" fill="#0F2318" class="cursor-blink"/>
+          </svg>
+        </div>
+        <div class="showcase-info">
+          <span class="tag">Contractor &amp; trades</span>
+          <h3>Trust-building, lead-focused</h3>
+          <p>Clear services, photos of past work, and an easy way for leads to reach you.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
   <div class="wrap">
     <div class="section-head reveal">
       <h2>How it works</h2>
@@ -307,41 +671,72 @@
       <p>Pay once, or spread it out with everything included. No setup fees either way.</p>
     </div>
     <div class="pricing-grid">
-      <div class="plan reveal">
+      <div class="plan gold reveal">
         <div class="plan-name">One-time build</div>
         <div class="plan-price">€2,000</div>
-        <p class="plan-desc">The site becomes fully yours once delivered — hosting and future changes are on you from there.</p>
+        <p class="plan-desc">Own it outright — one payment, no ongoing fees.</p>
         <ul>
-          <li>Custom-built site, up to 5 pages</li>
-          <li>Full ownership on delivery</li>
-          <li>One round of revisions before launch</li>
-          <li>Further changes quoted separately</li>
+          <li><strong>Full custom build</strong> — a professionally designed site built around your business, up to 5 pages.</li>
+          <li><strong>Complete ownership</strong> — once delivered, the website and its files are entirely yours.</li>
+          <li><strong>One round of revisions</strong> — after the first draft, we refine it with you until you're happy, before final delivery.</li>
+          <li><strong>No recurring cost</strong> — pay once, and there's no monthly bill tied to this plan going forward.</li>
+          <li><strong>Support after delivery, if you need it</strong> — further changes or a new feature can be requested anytime as a separate one-off, priced at €200 per request.</li>
+        </ul>
+
+        <!-- PayPal Hosted Button: One-time €2,000 build -->
+        <div class="paypal-slot">
+          <div id="paypal-container-3887FJSM5GZTN"></div>
+          <script>
+            paypal.HostedButtons({
+              hostedButtonId: "3887FJSM5GZTN",
+            }).render("#paypal-container-3887FJSM5GZTN")
+          </script>
+        </div>
+      </div>
+
+      <div class="plan reveal">
+        <div class="plan-name">Basic Website Care Plan</div>
+        <div class="plan-price">€40<small> / month</small></div>
+        <p class="plan-desc">Keep your website running smoothly, hassle-free.</p>
+        <ul>
+          <li><strong>Hosting &amp; uptime</strong> — your website stays online and monitored, all included.</li>
+          <li><strong>Free bug fixes</strong> — if something on your site breaks, including any plugins or tools we've installed, we fix it at no extra charge for as long as you're subscribed. Fixes handled within 3–7 business days.</li>
+          <li><strong>Security updates</strong> — we keep your site's software and SSL certificate up to date.</li>
+          <li><strong>Direct support</strong> — a simple way to reach us if something's not working.</li>
         </ul>
 
         <!--
-          PAYPAL ONE-TIME PAYMENT BUTTON
-          Replace YOUR_BUTTON_ID below with the ID PayPal gives you after
-          creating a "Buy Now" button in your PayPal Business account
-          (PayPal Dashboard → Pay & Get Paid → PayPal Buttons).
+          PAYPAL SUBSCRIPTION BUTTON
+          Replace YOUR_PLAN_ID_BASIC below with the Plan ID from a Subscription
+          product you create in your PayPal Business account
+          (PayPal Dashboard → Pay & Get Paid → Subscriptions).
         -->
         <div class="paypal-slot">
           <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-            <input type="hidden" name="cmd" value="_s-xclick">
-            <input type="hidden" name="hosted_button_id" value="YOUR_BUTTON_ID">
-            <button type="submit" class="btn btn-secondary" style="width:100%;">Pay €2,000 — One-time build</button>
+            <input type="hidden" name="cmd" value="_xclick-subscriptions">
+            <input type="hidden" name="business" value="YOUR_PAYPAL_EMAIL">
+            <input type="hidden" name="item_name" value="NestWebDigital Basic Care Plan">
+            <input type="hidden" name="a3" value="40.00">
+            <input type="hidden" name="p3" value="1">
+            <input type="hidden" name="t3" value="M">
+            <input type="hidden" name="src" value="1">
+            <input type="hidden" name="currency_code" value="EUR">
+            <button type="submit" class="btn btn-secondary" style="width:100%;">Subscribe — €40/month</button>
           </form>
         </div>
       </div>
 
       <div class="plan featured reveal">
-        <div class="plan-name">Monthly care plan</div>
+        <div class="plan-name">Monthly Website Care Plan</div>
         <div class="plan-price">€60<small> / month</small></div>
-        <p class="plan-desc">Best for businesses that update their info regularly, like menus, hours, or offers.</p>
+        <p class="plan-desc">Stay worry-free — we take care of your website so you don't have to.</p>
         <ul>
-          <li>Custom-built site, up to 5 pages</li>
-          <li>Hosting and domain upkeep included</li>
-          <li>One update request per month included</li>
-          <li>Cancel anytime, no lock-in contract</li>
+          <li><strong>Hosting &amp; uptime</strong> — your website stays online and monitored, all included.</li>
+          <li><strong>Regular updates</strong> — every 10 days, send us a message with any change you'd like (text, images, prices, small layout adjustments). We'll take care of it within 3–7 business days.</li>
+          <li><strong>Free bug fixes</strong> — if something on your site breaks, including any plugins or tools we've installed, we fix it at no extra charge for as long as you're subscribed.</li>
+          <li><strong>Security updates</strong> — we keep your site's software and SSL certificate up to date.</li>
+          <li><strong>Monthly backup</strong> — your site is backed up regularly, so we can restore it quickly if anything goes wrong.</li>
+          <li><strong>Direct support</strong> — a simple way to reach us anytime you need something changed or fixed.</li>
         </ul>
 
         <!--
@@ -360,7 +755,7 @@
             <input type="hidden" name="t3" value="M">
             <input type="hidden" name="src" value="1">
             <input type="hidden" name="currency_code" value="EUR">
-            <button type="submit" class="btn btn-secondary" style="width:100%;">Subscribe — €60/month</button>
+            <button type="submit" class="btn btn-primary" style="width:100%;">Subscribe — €60/month</button>
           </form>
         </div>
       </div>
@@ -390,7 +785,7 @@
       <div>
         <h2>Book a free consultation</h2>
         <p>Pick a time that works for you and we'll walk through what a site for your business could look like — no pressure, no obligation.</p>
-        <a href="#" id="calendly-link" class="btn btn-secondary">Open full calendar</a>
+        <a href="#" id="calendly-link" class="btn btn-primary">Open full calendar</a>
       </div>
 
       <!--
@@ -440,7 +835,7 @@
       <div class="contact-block reveal">
         <h3>Direct contact</h3>
         <p>Prefer email? Reach us directly and we'll get back to you within one business day.</p>
-        <p style="color:var(--navy); font-weight:500;">NestWebDigitalofficial@hotmail.com</p>
+        <p style="color:var(--white); font-weight:600;">NestWebDigitalofficial@hotmail.com</p>
       </div>
     </div>
   </div>
@@ -467,7 +862,6 @@
 </div>
 
 <script>
-  // Scroll reveal
   const revealEls = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -479,20 +873,15 @@
   }, { threshold: 0.12 });
   revealEls.forEach(el => io.observe(el));
 
-  // Cookie banner
   const banner = document.getElementById('cookie-banner');
   const acceptBtn = document.getElementById('cookie-accept');
   const declineBtn = document.getElementById('cookie-decline');
   const settingsLink = document.getElementById('cookie-settings-link');
 
-  function showBanner() {
-    banner.classList.add('show');
-  }
+  function showBanner() { banner.classList.add('show'); }
 
   const consent = localStorage.getItem('nwd_cookie_consent');
-  if (!consent) {
-    setTimeout(showBanner, 600);
-  }
+  if (!consent) { setTimeout(showBanner, 600); }
 
   acceptBtn.addEventListener('click', () => {
     localStorage.setItem('nwd_cookie_consent', 'all');
